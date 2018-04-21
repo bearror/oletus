@@ -1,6 +1,6 @@
 {
   "name": "oletus",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Minimal esm test runner",
   "scripts": {
     "test": ""
@@ -10,7 +10,7 @@
   ],
   "repository": "bearror/oletus",
   "main": "oletus.mjs",
-  "bin": "oletus.mjs",
+  "bin": "cli.mjs",
   "engines": {
     "node": ">=9.11.1"
   },

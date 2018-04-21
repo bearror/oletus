@@ -43,7 +43,7 @@ function run (testDirectory) {
 
 if (typeof process.send !== 'function') run('./test/')
 
-export default async function test (title, implementation) {
+async function test (title, implementation) {
   Error.prepareStackTrace = (e, stack) => stack
 
   let lines = []
@@ -65,3 +65,5 @@ export default async function test (title, implementation) {
 
   process.send({ didPass: lines.length === 0, message })
 }
+
+export { test as defualt, run }
