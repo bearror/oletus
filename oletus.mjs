@@ -41,8 +41,6 @@ function run (testDirectory) {
   })
 }
 
-if (typeof process.send !== 'function') run('./test/')
-
 async function test (title, implementation) {
   Error.prepareStackTrace = (e, stack) => stack
 
