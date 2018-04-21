@@ -17,7 +17,7 @@ function report (message, timestamp, passed, failed, clear) {
   process.stdout.write(str)
 }
 
-function run (testDirectory) {
+export function run (testDirectory) {
   const timestamp = perfHooks.performance.now()
 
   fs.readdir(testDirectory, (err, files) => {
@@ -41,7 +41,7 @@ function run (testDirectory) {
   })
 }
 
-async function test (title, implementation) {
+export default async function test (title, implementation) {
   Error.prepareStackTrace = (e, stack) => stack
 
   let lines = []
@@ -63,5 +63,3 @@ async function test (title, implementation) {
 
   process.send({ didPass: lines.length === 0, message })
 }
-
-export { test as defualt, run }
