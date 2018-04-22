@@ -1,6 +1,6 @@
 # oletus
 
-Zero configuration, zero dependency test runner for ECMAScript modules.
+Zero configuration, zero dependency test runner for ECMAScript Modules.
 
 ## Author
 

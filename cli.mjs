@@ -1,4 +1,11 @@
 #! /usr/bin/env node --experimental-modules --no-warnings
-import { run } from './oletus'
+import run from './runner'
+import concise from './report-concise'
+import verbose from './report-verbose'
 
-run('./test/')
+run('./test/', process.env.CI ? verbose : concise)
+  .then(({ passed, failed }) => failed ? process.exit(1) : process.exit(0))
+  .catch(err => {
+    process.stderr.write(err.toString())
+    process.exit(1)
+  })

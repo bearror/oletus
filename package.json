@@ -1,13 +1,17 @@
 {
   "name": "oletus",
   "version": "1.0.6",
-  "description": "Minimal esm test runner",
+  "description": "Minimal ECMAScript Module test runner",
   "scripts": {
-    "test": ""
+    "test": "node --experimental-modules --no-warnings test/index.mjs",
+    "example": "node --experimental-modules --no-warnings example.mjs"
   },
   "files": [
     "cli.mjs",
-    "oletus.mjs"
+    "oletus.mjs",
+    "report-concise.mjs",
+    "report-verbose.mjs",
+    "runner.mjs"
   ],
   "repository": "bearror/oletus",
   "main": "oletus.mjs",
