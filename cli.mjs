@@ -1,4 +1,4 @@
-#! /usr/bin/env node --experimental-modules --no-warnings
+#! /usr/bin/env node
 import run from './runner'
 import concise from './report-concise'
 import verbose from './report-verbose'
