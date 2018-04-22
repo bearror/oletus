@@ -1,4 +1,4 @@
-# oletus
+# ▶ oletus
 
 Zero configuration, zero dependency test runner for ECMAScript Modules.
 
