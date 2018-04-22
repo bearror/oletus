@@ -1,14 +1,12 @@
 {
   "name": "oletus",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Minimal ECMAScript Module test runner",
   "scripts": {
     "test": "node --experimental-modules --no-warnings test/index.mjs",
     "example": "node --experimental-modules --no-warnings example.mjs"
   },
   "files": [
-    "cli-esm.mjs",
-    "cli-native.mjs",
     "cli.mjs",
     "oletus.mjs",
     "report-concise.mjs",
@@ -17,12 +15,9 @@
   ],
   "repository": "bearror/oletus",
   "main": "oletus.mjs",
-  "bin": {
-    "oletus": "cli-native.mjs",
-    "oletus-esm": "cli-esm.mjs"
-  },
+  "bin": "cli.mjs",
   "engines": {
-    "node": ">=6"
+    "node": ">=9.11.1"
   },
   "author": "bearror",
   "license": "MIT"
