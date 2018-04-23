@@ -1,12 +1,13 @@
 {
   "name": "oletus",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "Minimal ECMAScript Module test runner",
   "scripts": {
     "test": "node --experimental-modules --no-warnings test/index.mjs",
     "example": "node --experimental-modules --no-warnings example.mjs"
   },
   "files": [
+    "batch-promise.mjs",
     "cli.mjs",
     "oletus.mjs",
     "report-concise.mjs",

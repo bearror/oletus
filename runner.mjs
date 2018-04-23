@@ -1,6 +1,8 @@
 import fs from 'fs'
 import childProcess from 'child_process'
 import perfHooks from 'perf_hooks'
+import os from 'os'
+import batchPromise from './batch-promise'
 
 export default function run (testDirectory, report = () => {}) {
   const timestamp = perfHooks.performance.now()
@@ -12,7 +14,7 @@ export default function run (testDirectory, report = () => {}) {
       let passed = 0
       let failed = 0
 
-      Promise.all(files.map(file => {
+      batchPromise(files, os.cpus().length, file => {
         return new Promise(resolve => {
           const forked = childProcess.fork(`${testDirectory}${file}`)
 
@@ -23,7 +25,7 @@ export default function run (testDirectory, report = () => {}) {
 
           forked.on('close', () => resolve())
         })
-      }))
+      })
         .then(() => {
           report({ timestamp, passed, failed, isComplete: true })
           resolve({ passed, failed })
