@@ -58,6 +58,7 @@ test('bar', async t => {
 ## Reporters
 
 Oletus has a *concise reporter* on local runs and a *verbose reporter* on CI environments.
+
 <img src="./oletus-reporters.png">
 
 
