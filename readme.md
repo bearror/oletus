@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/bearror/oletus.svg?branch=master)](https://travis-ci.org/bearror/oletus)
 
-A tiny, zero configuration, zero dependency test runner for ECMAScript Modules for getting started quick. If you eventually need to switch to the bigger guns, *you don't have to rewrite your tests*.
+A tiny, zero configuration, zero dependency test runner for ECMAScript Modules—made specifically for getting started quick. If you eventually decide to switch to the bigger guns, *you don't have to rewrite your tests*.
 
 ## Test Syntax
 
