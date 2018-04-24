@@ -4,8 +4,6 @@
 
 A tiny, zero configuration, zero dependency test runner for ECMAScript Modules. For those wanting to get started quickly—and if you need to switch to the bigger guns, *your test are already written in a compatible syntax*.
 
-<img src="./oletus-reporters.png">
-
 ## Test Syntax
 
 ```js
@@ -56,6 +54,12 @@ test('bar', async t => {
 ```
 
 ### `npm test` away!
+
+## Reporters
+
+Oletus has a *concise reporter* on local runs and a *verbose reporter* on CI environments.
+<img src="./oletus-reporters.png">
+
 
 ## API
 
