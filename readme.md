@@ -51,6 +51,16 @@ test('bar', async t => {
 
   t.equal(await bar, 'bar')
 })
+
+test('teardown', async (t, tearDown) => {
+  tearDown(async () => {
+    console.log('it was executed after the test ends')
+  })
+
+  const bar = Promise.resolve('bar')
+
+  t.equal(await bar, 'bar')
+})
 ```
 
 ### `npm test` away!
