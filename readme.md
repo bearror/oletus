@@ -52,9 +52,9 @@ test('bar', async t => {
   t.equal(await bar, 'bar')
 })
 
-test('teardown', async (t, tearDown) => {
-  tearDown(async () => {
-    console.log('it was executed after the test ends')
+test('teardown example', async (t, teardown) => {
+  teardown(async () => {
+    console.log('it was executed after the test has ended')
   })
 
   const bar = Promise.resolve('bar')
