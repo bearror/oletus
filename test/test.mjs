@@ -1,4 +1,4 @@
-import test from '../oletus'
+import test from '../oletus.mjs'
 import assert from 'assert'
 
 function fail (e) {

@@ -1,4 +1,4 @@
-import run from '../runner'
+import run from '../runner.mjs'
 import assert from 'assert'
 
 function fail (e) {

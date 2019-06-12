@@ -2,7 +2,7 @@ import fs from 'fs'
 import childProcess from 'child_process'
 import perfHooks from 'perf_hooks'
 import os from 'os'
-import batchPromise from './batch-promise'
+import batchPromise from './batch-promise.mjs'
 
 export default function run (testDirectory, report = () => {}) {
   const timestamp = perfHooks.performance.now()
