@@ -1,2 +1,2 @@
-import './run'
-import './test'
+import './run.mjs'
+import './test.mjs'
