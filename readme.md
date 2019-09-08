@@ -53,6 +53,14 @@ test('bar', async t => {
 })
 ```
 
+#### Alternate test locations
+
+It's also possible to run tests that match a pattern passed in as a command-line argument.
+```bash
+oletus src/**/*.test.mjs
+```
+
+
 ### `npm test` away!
 
 ## Reporters
