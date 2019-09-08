@@ -53,6 +53,8 @@ test('bar', async t => {
 })
 ```
 
+---
+
 #### Alternate test locations
 
 It's also possible to run tests that match a pattern passed in as a command-line argument.
@@ -60,6 +62,7 @@ It's also possible to run tests that match a pattern passed in as a command-line
 oletus src/**/*.test.mjs
 ```
 
+---
 
 ### `npm test` away!
 
