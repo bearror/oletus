@@ -1,8 +1,28 @@
 import assert from 'assert'
 
-export default async function test (title, implementation) {
-  Error.prepareStackTrace = (e, stack) => stack
+const cwd = `file://${process.cwd()}`
 
+function stripCwd (str) {
+  return str.replace(cwd, '')
+}
+
+function customPrepareStackTrace (e, stack) {
+  return stack
+    .filter(frame => !frame.isNative())
+    .filter(frame => !frame.getFileName().startsWith('internal/'))
+    .map(frame => `${stripCwd(frame.getFileName())}:${frame.getLineNumber()}`)
+    .join('\n')
+}
+
+function extractTraceFallback (trace) {
+  return trace
+    .split('\n')
+    .filter(line => line.startsWith('    at '))
+    .map(line => stripCwd(line.replace('    at ', '')))
+    .join('\n')
+}
+
+export default async function test (title, implementation) {
   let location = ''
   let lines = []
   let message = ''
@@ -10,8 +30,16 @@ export default async function test (title, implementation) {
   try {
     await implementation(assert.strict)
   } catch (e) {
-    location = `${/[^/]*$/.exec(e.stack[0].getFileName())[0]}:${e.stack[0].getLineNumber()}`
-    lines = e.toString().split('\n')
+    const originalPrepareStackTrace = Error.prepareStackTrace
+    const originalStackTraceLimit = Error.stackTraceLimit
+    Error.prepareStackTrace = customPrepareStackTrace
+    Error.stackTraceLimit = 5
+    const trace = {}
+    Error.captureStackTrace(trace, test)
+    location = trace.stack || extractTraceFallback(e.stack)
+    lines = e.message.split('\n')
+    Error.prepareStackTrace = originalPrepareStackTrace
+    Error.stackTraceLimit = originalStackTraceLimit
 
     if (lines[0].startsWith('AssertionError [ERR_ASSERTION]: Input A expected to ')) lines.splice(0, 3)
 
