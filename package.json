@@ -9,6 +9,7 @@
   "files": [
     "batch-promise.mjs",
     "cli.mjs",
+    "crawler.mjs",
     "oletus.mjs",
     "report-concise.mjs",
     "report-verbose.mjs",

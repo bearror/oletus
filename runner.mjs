@@ -1,36 +1,27 @@
-import fs from 'fs'
 import childProcess from 'child_process'
 import perfHooks from 'perf_hooks'
 import os from 'os'
 import batchPromise from './batch-promise.mjs'
 
-export default function run (testDirectory, report = () => {}) {
+export default function run (files, report = () => {}) {
   const timestamp = perfHooks.performance.now()
+  let passed = 0
+  let failed = 0
 
-  return new Promise((resolve, reject) => {
-    fs.readdir(testDirectory, (err, files) => {
-      if (err) reject(err)
+  return batchPromise(files, os.cpus().length, file => {
+    return new Promise(resolve => {
+      const forked = childProcess.fork(file)
 
-      let passed = 0
-      let failed = 0
-
-      batchPromise(files, os.cpus().length, file => {
-        return new Promise(resolve => {
-          const forked = childProcess.fork(`${testDirectory}${file}`)
-
-          forked.on('message', ({ didPass, title, location, message }) => {
-            didPass ? passed++ : failed++
-            report({ didPass, title, location, message, timestamp, file, passed, failed, isComplete: false })
-          })
-
-          forked.on('close', () => resolve())
-        })
+      forked.on('message', ({ didPass, title, location, message }) => {
+        didPass ? passed++ : failed++
+        report({ didPass, title, location, message, timestamp, file, passed, failed, isComplete: false })
       })
-        .then(() => {
-          report({ timestamp, passed, failed, isComplete: true })
-          resolve({ passed, failed })
-        })
-        .catch(err => reject(err))
+
+      forked.on('close', () => resolve())
     })
   })
+    .then(() => {
+      report({ timestamp, passed, failed, isComplete: true })
+      return { passed, failed }
+    })
 }
