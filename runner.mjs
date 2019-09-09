@@ -9,15 +9,23 @@ export default function run (files, report = () => {}) {
   let failed = 0
 
   return batchPromise(files, os.cpus().length, file => {
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
       const forked = childProcess.fork(file)
+
+      forked.on('error', reject)
 
       forked.on('message', ({ didPass, title, location, message }) => {
         didPass ? passed++ : failed++
         report({ didPass, title, location, message, timestamp, file, passed, failed, isComplete: false })
       })
 
-      forked.on('close', () => resolve())
+      forked.on('close', code => {
+        if (code === 0) {
+          resolve()
+        } else {
+          reject(new Error(`Exit test '${file}' with code ${code}`))
+        }
+      })
     })
   })
     .then(() => {
