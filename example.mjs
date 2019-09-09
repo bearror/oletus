@@ -6,8 +6,10 @@ import verbose from './report-verbose.mjs'
 const fixtures = crawl('./test/fixtures/')
 
 fixtures
-  .then(fixtures => {
-    return run(fixtures, concise)
+  .then(async fixtures => {
+    await run(fixtures, concise)
+
+    return fixtures
   })
   .then(fixtures => {
     return run(fixtures, verbose)
