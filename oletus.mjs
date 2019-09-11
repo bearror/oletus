@@ -9,7 +9,10 @@ function stripCwd (str) {
 function customPrepareStackTrace (e, stack) {
   return stack
     .filter(frame => !frame.isNative())
-    .filter(frame => !frame.getFileName().startsWith('internal/'))
+    .filter(frame => {
+      const file = frame.getFileName()
+      return file && !file.startsWith('internal/')
+    })
     .map(frame => `${stripCwd(frame.getFileName())}:${frame.getLineNumber()}`)
     .join('\n')
 }
