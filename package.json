@@ -14,7 +14,8 @@
     "report-concise.mjs",
     "report-verbose.mjs",
     "report.mjs",
-    "runner.mjs"
+    "runner.mjs",
+    "util.mjs"
   ],
   "repository": "bearror/oletus",
   "main": "oletus.mjs",
