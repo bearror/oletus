@@ -14,6 +14,19 @@ function customPrepareStackTrace (e, stack) {
     .join('\n')
 }
 
+function getLocation (size, f) {
+  const originalPrepareStackTrace = Error.prepareStackTrace
+  const originalStackTraceLimit = Error.stackTraceLimit
+  const trace = {}
+  Error.prepareStackTrace = customPrepareStackTrace
+  Error.stackTraceLimit = size
+  Error.captureStackTrace(trace, f)
+  const location = trace.stack
+  Error.prepareStackTrace = originalPrepareStackTrace
+  Error.stackTraceLimit = originalStackTraceLimit
+  return location
+}
+
 function extractTraceFallback (trace) {
   return trace
     .split('\n')
@@ -30,16 +43,8 @@ export default async function test (title, implementation) {
   try {
     await implementation(assert.strict)
   } catch (e) {
-    const originalPrepareStackTrace = Error.prepareStackTrace
-    const originalStackTraceLimit = Error.stackTraceLimit
-    Error.prepareStackTrace = customPrepareStackTrace
-    Error.stackTraceLimit = 5
-    const trace = {}
-    Error.captureStackTrace(trace, test)
-    location = trace.stack || extractTraceFallback(e.stack)
+    location = getLocation(5, test) || extractTraceFallback(e.stack)
     lines = e.message.split('\n')
-    Error.prepareStackTrace = originalPrepareStackTrace
-    Error.stackTraceLimit = originalStackTraceLimit
 
     if (lines[0].startsWith('AssertionError [ERR_ASSERTION]: Input A expected to ')) lines.splice(0, 3)
 
