@@ -9,8 +9,10 @@ function fail (e) {
 
 crawl('./test/fixtures/')
   .then(run)
-  .then(({ passed, failed }) => {
+  .then(({ passed, failed, pending, crashed }) => {
     assert.strict.equal(passed, 6)
     assert.strict.equal(failed, 4)
+    assert.strict.equal(pending, 1)
+    assert.strict.equal(crashed, 1)
   })
   .catch(e => fail(e))
