@@ -1,6 +1,8 @@
 import assert, { AssertionError } from 'assert'
 import { stripCwd } from './util.mjs'
 
+let incremental = 0
+
 /**
  * Custom stack trace formatter for overriding `Error.prepareStackTrace` to
  * generate a more readable stack trace.
@@ -68,14 +70,18 @@ function extractTraceFallback (stack) {
  * })
  */
 export default async function test (title, implementation) {
-  let didPass = true
+  const id = ++incremental
+  let status = 'pending'
   let location = ''
   let message = ''
 
+  if (process.send) process.send ({ id, status, title, location, message })
+
   try {
     await implementation(assert.strict)
+    status = 'passed'
   } catch (e) {
-    didPass = false // any uncaught error in `implementation` counts as a fail
+    status = 'failed' // any uncaught error in `implementation` counts as a fail
     location = getLocation(5, test) || extractTraceFallback(e.stack)
     message = e.message
 
@@ -86,6 +92,6 @@ export default async function test (title, implementation) {
   }
 
   // Report the status of a completed test back to the `runner`...
-  if (process.send) process.send({ didPass, title, location, message })
-  return { didPass, title, location, message } // ...and direct assertions
+  if (process.send) process.send({ id, status, title, location, message })
+  return { id, status, title, location, message } // ...and direct assertions
 }

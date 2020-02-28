@@ -10,7 +10,10 @@ const eventualFiles = process.argv.length > 2
 
 eventualFiles
   .then(files => run(files, process.env.CI ? verbose : concise))
-  .then(({ passed, failed, crashed }) => (failed + crashed > 0) ? process.exit(1) : process.exit(0))
+  .then(({ passed, failed, crashed, pending }) => (failed + crashed + pending > 0)
+    ? process.exit(1)
+    : process.exit(0)
+  )
   .catch(err => {
     process.stderr.write(err.toString())
     process.exit(1)
