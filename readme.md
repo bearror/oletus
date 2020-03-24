@@ -177,7 +177,3 @@ console.log (
   passed, failed, crashed
 )
 ```
-
-## Author
-
-Joonatan Vuorinen ([@bearror](https://twitter.com/bearror))
