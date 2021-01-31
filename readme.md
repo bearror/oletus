@@ -125,23 +125,39 @@ test ('my export', t => {
 
 ### Running tests in sequence instead of parallely
 
-Because the `test` function returns a Promise, it's quite straight-forward to
-modify the execution order or rewire things any other way:
+Because the `test` function returns a Promise, all you need to do is add `await`
+statements in front of your tests to run them in sequence. Note that your
+runtime needs to support top-level-await. Otherwise you can wrap your tests in
+an async function and call it at the end of your file.
 
 ```js
-const runTests = async () => {
-  await test('foo', async t => {
-    const foo = Promise.resolve('foo')
-    t.equal(await foo, 'foo')
-  })
+await test('foo', async t => {
+  const foo = Promise.resolve('foo')
+  t.equal(await foo, 'foo')
+})
 
-  await test('bar', async t => {
-    const bar = Promise.resolve('bar')
-    t.equal(await bar, 'bar')
-  })
-}
+await test('bar', async t => {
+  const bar = Promise.resolve('bar')
+  t.equal(await bar, 'bar')
+})
+```
 
-runTests()
+### Completely custom test run order
+
+Because the `test` function returns a Promise, you can manipulate the run order
+of your tests in any way you see fit. For example, you could execute your tests
+in batches of 2 by `await`ing `Promise.all` calls.
+
+```js
+await Promise.all([
+  test('first', () => {}),
+  test('second', () => {}),
+])
+
+await Promise.all([
+  test('third', () => {}),
+  test('fourth', () => {}),
+])
 ```
 
 ### Setup and teardown
