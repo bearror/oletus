@@ -7,6 +7,7 @@
     "example": "node --experimental-modules --no-warnings example.mjs"
   },
   "files": [
+    "*.d.ts",
     "batch-promise.mjs",
     "cli.mjs",
     "crawler.mjs",
