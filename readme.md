@@ -1,6 +1,6 @@
 # ▶ oletus
 
-[![Build Status](https://travis-ci.org/bearror/oletus.svg?branch=master)](https://travis-ci.org/bearror/oletus)
+[![Build Status](https://travis-ci.com/bearror/oletus.svg?branch=master)](https://travis-ci.com/bearror/oletus)
 
 A zero configuration, zero dependency test runner for ECMAScript Modules—made specifically for getting started quick. Painless migration to the bigger guns if you end up needing them.
 
