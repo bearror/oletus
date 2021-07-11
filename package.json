@@ -20,6 +20,7 @@
   "repository": "bearror/oletus",
   "main": "oletus.mjs",
   "bin": "cli.mjs",
+  "types": "oletus.d.ts",
   "engines": {
     "node": ">= 12.0.0"
   },
