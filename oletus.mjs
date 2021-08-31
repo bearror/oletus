@@ -84,11 +84,6 @@ export default async function test (title, implementation) {
     status = 'failed' // any uncaught error in `implementation` counts as a fail
     location = getLocation(5, test) || extractTraceFallback(e.stack)
     message = e.message
-
-    // Omit the verbose assertion boilerplate from reporting.
-    if (e instanceof AssertionError) {
-      message = e.message.split('\n').slice(2).join('\n')
-    }
   }
 
   // Report the status of a completed test back to the `runner`...
