@@ -1,6 +1,6 @@
 {
   "name": "oletus",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "description": "Minimal ECMAScript Module test runner",
   "scripts": {
     "test": "node --experimental-modules --no-warnings test/index.mjs",
