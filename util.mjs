@@ -1,4 +1,4 @@
-const cwd = `file://${process.cwd()}`
+const cwd = `file://${process.cwd()}/`
 
 /**
  * Strips the _current working directory_ from the passed in string.
