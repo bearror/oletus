@@ -14,7 +14,9 @@ function customPrepareStackTrace (e, stack) {
     .filter(frame => !frame.isNative())
     .filter(frame => {
       const file = frame.getFileName()
-      return file && !file.startsWith('internal/')
+      return file &&
+        !file.startsWith('internal/') &&
+        !file.startsWith('node:internal/')
     })
     .map(frame => `${stripCwd(frame.getFileName())}:${frame.getLineNumber()}`)
     .join('\n')
