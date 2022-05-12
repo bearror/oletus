@@ -1,4 +1,4 @@
-import test from '../../oletus.mjs'
+import test from '../../oletus.js'
 
 test('equal pass', t => t.equal('a', 'a'))
 test('equal fail', t => t.equal(1, 2))

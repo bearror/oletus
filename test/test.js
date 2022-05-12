@@ -1,4 +1,4 @@
-import test from '../oletus.mjs'
+import test from '../oletus.js'
 import assert from 'assert'
 
 function fail (e) {
@@ -23,7 +23,7 @@ test('equal fail', t => t.equal('a', 'b'))
   .then(({ status, title, location, message }) => {
     assert.strict.equal(status, 'failed')
     assert.strict.equal(title, 'equal fail')
-    assert.strict.equal(location, 'test/test.mjs:22')
+    assert.strict.equal(location, 'test/test.js:22')
     assert.strict.equal(typeof message, 'string')
   })
   .catch(e => fail(e))
@@ -41,7 +41,7 @@ test('ok fail', t => t.ok(false))
   .then(({ status, title, location, message }) => {
     assert.strict.equal(status, 'failed')
     assert.strict.equal(title, 'ok fail')
-    assert.strict.equal(location, 'test/test.mjs:40')
+    assert.strict.equal(location, 'test/test.js:40')
     assert.strict.equal(message.split('\n').length, 1)
   })
   .catch(e => fail(e))
@@ -59,7 +59,7 @@ test('deepEqual fail', t => t.deepEqual({ a: { b: 42 } }, { a: { B: 42 } }))
   .then(({ status, title, location, message }) => {
     assert.strict.equal(status, 'failed')
     assert.strict.equal(title, 'deepEqual fail')
-    assert.strict.equal(location, 'test/test.mjs:58')
+    assert.strict.equal(location, 'test/test.js:58')
     assert.strict.equal(typeof message, 'string')
   })
   .catch(e => fail(e))
@@ -77,7 +77,7 @@ test('async fail', async t => t.equal(await resolveAfter(777), ''))
   .then(({ status, title, location, message }) => {
     assert.strict.equal(status, 'failed')
     assert.strict.equal(title, 'async fail')
-    assert.strict.ok(location.includes('test/test.mjs:76:33'))
+    assert.strict.ok(location.includes('test/test.js:76:33'))
     assert.strict.equal(typeof message, 'string')
   })
   .catch(e => fail(e))
@@ -95,7 +95,7 @@ test('promise fail', t => resolveAfter(100).then(result => t.equal(result, '')))
   .then(({ status, title, location, message }) => {
     assert.strict.equal(status, 'failed')
     assert.strict.equal(title, 'promise fail')
-    assert.strict.ok(location.includes('test/test.mjs:94:62'))
+    assert.strict.ok(location.includes('test/test.js:94:62'))
     assert.strict.equal(typeof message, 'string')
   })
   .catch(e => fail(e))

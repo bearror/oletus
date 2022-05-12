@@ -1,7 +1,7 @@
-import run from './runner.mjs'
-import crawl from './crawler.mjs'
-import concise from './report-concise.mjs'
-import verbose from './report-verbose.mjs'
+import run from './runner.js'
+import crawl from './crawler.js'
+import concise from './report-concise.js'
+import verbose from './report-verbose.js'
 
 const fixtures = crawl('./test/fixtures/')
 

@@ -3,27 +3,34 @@
   "version": "3.2.0",
   "description": "Minimal ECMAScript Module test runner",
   "scripts": {
-    "test": "node --experimental-modules --no-warnings test/index.mjs",
-    "example": "node --experimental-modules --no-warnings example.mjs"
+    "test": "node --experimental-modules --no-warnings test/index.js",
+    "example": "node --experimental-modules --no-warnings example.js"
   },
   "files": [
     "*.d.ts",
-    "batch-promise.mjs",
-    "cli.mjs",
-    "crawler.mjs",
-    "oletus.mjs",
-    "report-concise.mjs",
-    "report-verbose.mjs",
-    "report.mjs",
-    "runner.mjs",
-    "util.mjs"
+    "batch-promise.js",
+    "cli.js",
+    "crawler.js",
+    "oletus.js",
+    "report-concise.js",
+    "report-verbose.js",
+    "report.js",
+    "runner.js",
+    "util.js"
   ],
   "repository": "bearror/oletus",
-  "main": "oletus.mjs",
-  "bin": "cli.mjs",
+  "type": "module",
+  "main": "oletus.js",
+  "bin": "cli.js",
   "types": "oletus.d.ts",
+  "exports": {
+    ".": "./oletus.js",
+    "./report-concise.mjs": "./report-concise.js",
+    "./report-verbose.mjs": "./report-verbose.js",
+    "./runner.mjs": "./runner.js"
+  },
   "engines": {
-    "node": ">= 12.0.0"
+    "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
   },
   "author": "bearror",
   "license": "MIT"
