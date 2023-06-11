@@ -1,8 +1,8 @@
 import childProcess from 'child_process'
 import perfHooks from 'perf_hooks'
 import os from 'os'
-import batchPromise from './batch-promise.mjs'
-import { Pass, Fail, File, Crash, Completion } from './report.mjs'
+import batchPromise from './batch-promise.js'
+import { Pass, Fail, File, Crash, Completion } from './report.js'
 
 export default function run (files, report = () => {}) {
   const timestamp = perfHooks.performance.now()

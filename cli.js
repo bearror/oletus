@@ -1,8 +1,8 @@
 #! /usr/bin/env node
-import run from './runner.mjs'
-import concise from './report-concise.mjs'
-import verbose from './report-verbose.mjs'
-import crawl from './crawler.mjs'
+import run from './runner.js'
+import concise from './report-concise.js'
+import verbose from './report-verbose.js'
+import crawl from './crawler.js'
 
 const eventualFiles = process.argv.length > 2
   ? Promise.resolve(process.argv.slice(2))

@@ -1,5 +1,5 @@
 import assert, { AssertionError } from 'assert'
-import { stripCwd } from './util.mjs'
+import { stripCwd } from './util.js'
 
 let incremental = 0
 

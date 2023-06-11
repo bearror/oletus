@@ -1,4 +1,4 @@
-import type { Report } from "./report"
+import type { Report } from "./report.js"
 
 export interface RunnerResult {
   readonly passed: number

@@ -1,4 +1,4 @@
-import type { StrictAssertModule } from "./assert"
+import type { StrictAssertModule } from "./assert.js"
 
 export interface TestResult {
   readonly id: number

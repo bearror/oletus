@@ -71,7 +71,7 @@ pattern in the example below is handled by your shell, not by Oletus.
 
 ```json
 {
-  "test": "oletus test.js src/**/*.test.mjs"
+  "test": "oletus test.js src/**/*.test.js"
 }
 ```
 
@@ -106,7 +106,7 @@ Oletus works great together with [`c8`](https://github.com/bcoe/c8). C8 is a too
 
 ```json
 {
-  "test": "c8 oletus test.js src/**/*.test.mjs"
+  "test": "c8 oletus test.js src/**/*.test.js"
 }
 ```
 
@@ -186,7 +186,7 @@ Besides the CLI, there's also an interface for programmatic use:
 import run from 'oletus/runner.mjs'
 import concise from 'oletus/report-concise.mjs'
 
-const { passed, failed, crashed } = await run(['test/index.mjs'], concise)
+const { passed, failed, crashed } = await run(['test/index.js'], concise)
 
 console.log (
   '%s tests passed, %s tests failed, and %s files crashed',

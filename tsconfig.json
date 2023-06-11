@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "lib": ["ES2015"],
+
+    "checkJs": true,
+    "noEmit": true,
+
+    "esModuleInterop": true,
+    "importsNotUsedAsValues": "error",
+    "isolatedModules": true,
+
+    "allowUnreachableCode": false,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "strict": true
+  }
+}

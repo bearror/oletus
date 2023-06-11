@@ -1,4 +1,4 @@
-import test from '../../oletus.mjs'
+import test from '../../oletus.js'
 
 function resolveAfter (time) {
   return new Promise(resolve => setTimeout(() => resolve('resolved'), time))

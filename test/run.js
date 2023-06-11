@@ -1,5 +1,5 @@
-import run from '../runner.mjs'
-import crawl from '../crawler.mjs'
+import run from '../runner.js'
+import crawl from '../crawler.js'
 import assert from 'assert'
 
 function fail (e) {
